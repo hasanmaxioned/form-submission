@@ -128,7 +128,40 @@ input {
   justify-content: center;
 }
 
-textarea#address { margin-left: 11px; }
+textarea#address { 
+  padding: 10px 14px;
+  margin-left: 12px;
+  resize: none;
+}
+
+.form-submit {
+  display: flex;
+  justify-content: center;
+}
+
+ul.data-store {
+  margin-top: 32px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+li.details {
+  padding: 10px 23px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+input.submit-btn {
+  padding: 12px 24px;
+  border: 0;
+}
+
+input.cancel-btn {
+  padding: 12px 24px;
+  border: 0;
+  text-transform: capitalize;
+}
 /*=================================
   main styling ends here
 =================================*/
