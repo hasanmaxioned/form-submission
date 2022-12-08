@@ -1,13 +1,4 @@
 @charset "utf-8";
-/* ==========================================================================
-   1. CSS Reset Code
-   ========================================================================== */
-
-/* 1.1. Eric Meyers Reset
-   http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-   ========================================================================== */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img,
 ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,
@@ -104,51 +95,40 @@ li {
   margin: 0 auto;
 }
 /*=================================
-  Header styling starts here
-=================================*/
-
-
-
-
-
-
-/*=================================
-  Header styling ends here
-=================================*/  
-
-/*=================================
   main styling starts here
 =================================*/
 
+h2.heading {
+  margin: 45px 0;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+}
 
+.form-field {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
 
+input {
+  padding: 9px 14px;
+  margin-left: 8px;
+}
 
+.input-group {
+  display: flex;
+  align-items: baseline;
+}
 
+.gender-detail {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
 
-
-
+textarea#address { margin-left: 11px; }
 /*=================================
   main styling ends here
 =================================*/
-
-/*=================================
-  footer styling starts here
-=================================*/ 
-
-
-
-
-
-
-
- /*=================================
-  footer styling ends here
-=================================*/ 
-
-/*media query starts*/
-/*media query for 995px starts here*/
-@media only screen and (max-width: 995px) {
-
-
-
-}  
