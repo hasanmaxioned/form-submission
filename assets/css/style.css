@@ -162,6 +162,11 @@ input.cancel-btn {
   border: 0;
   text-transform: capitalize;
 }
+
+span.error {
+  display: inline-block;
+  text-indent: -99999px;
+}
 /*=================================
   main styling ends here
 =================================*/
