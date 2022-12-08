@@ -120,6 +120,11 @@ input {
 .input-group {
   display: flex;
   align-items: baseline;
+  flex-direction: column;
+}
+
+.input-group.active input {
+  border-color: #ff0d0d;
 }
 
 .gender-detail {
@@ -161,11 +166,18 @@ input.cancel-btn {
   padding: 12px 24px;
   border: 0;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
-span.error {
+.error, .radio-error, .check-error {
   display: inline-block;
-  text-indent: -99999px;
+  /* text-indent: -99999px; */
+  visibility: hidden;
+}
+
+.error.active, .radio-error.active, .check-error.active {
+  visibility: visible;
+  color: #ff0d0d;
 }
 /*=================================
   main styling ends here
