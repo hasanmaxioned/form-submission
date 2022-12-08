@@ -1,46 +1,95 @@
 <!doctype html>
 <!-- If multi-language site, reconsider usage of html lang declaration here. -->
-<html lang="en"> 
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <title>Client</title>
-  <!-- View-port Basics: http://mzl.la/VYREaP -->
-  <!-- This meta tag is used for mobile device to display the page without any zooming,
-       so how much the device is able to fit on the screen is what's shown initially. 
-       Remove comments from this tag, when you want to apply media queries to the website. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <!-- Place favicon.ico in the root directory: mathiasbynens.be/notes/touch-icons -->
   <link rel="shortcut icon" href="favicon.ico" />
-  <!--font-awesome link for icons-->
-  <link rel="stylesheet" media="screen" href="assets/vendor/font-awesome/css/all.min.css" >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Default style-sheet is for 'media' type screen (color computer display).  -->
-  <link rel="stylesheet" media="screen" href="assets/css/style.css" >
+  <link rel="stylesheet" media="screen" href="assets/css/style.css">
 </head>
 
 <body>
-  <!--container start-->
-  <div class="container">
-    <!--header section start-->
-    <header>
-      
-    </header>
-    <!--header section start-->
-    <!--main section start-->
-    <main>
 
-    </main>
-    <!--main section end-->
+  <!--main section start-->
+  <main>
+    <section class="edit-delete-form">
+      <div class="wrapper">
+        <h2 class="heading">Edit & Delete Form</h2>
+        <form action="#FIXME" id="forms" method="post" name="form">
+          <div class="form-field">
+            <label for="fname">First Name :</label>
+            <div class="input-group">
+              <input type="text" id="fname" class="first-name" name="First Name">
+              <span class="error">error</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="lname">Last Name :</label>
+            <div class="input-group">
+              <input type="text" id="lname" class="last-name" name="lname">
+              <span class="error">error</span>
+            </div>
+          </div>
+          <div class="gender-detail">
+            <label for="gender">Gender :</label>
+            <div class="form-field">
+              <div class="input-group">
+                <input type="radio" id="male" class="male-gender" name="male">
+                <label for="male">Male</label>
+              </div>
+              <div class="input-group">
+                <input type="radio" id="female" class="female-gender" name="male">
+                <label for="female">Female</label>
+              </div>
+              <span class="error">error</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="address">Address :</label>
+            <div class="input-group">
+              <textarea name="Address" id="address" class="address-field" cols="30"></textarea>
+              <span class="error">error</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <div class="input-group">
+              <input type="checkbox" name="checkbox" id="check-box" class="check-box-field">
+              <label for="check-box">Terms and condition</label>
+            </div>
+            <span class="error">error</span>
+          </div>
+          <div class="form-submit">
+            <div class="input-group">
+              <input type="submit" name="submit" class="submit-btn">
+            </div>
+            <div class="input-group">
+              <input type="reset" name="cancel" class="cancel-btn">
+            </div>
+          </div>
+        </form>
 
-    <!--footer section start-->
-    <footer>      
-
-    </footer>
-    <!--footer section end-->
-
-  </div>
-  <!--container end-->
+        <div class="storage">
+          <ul class="data-store">
+            <li class="data">
+              <ul class="detail-list">
+                <li class="details">name</li>
+                <li class="details">last name</li>
+                <li class="details">gender</li>
+                <li class="details">address</li>
+                <li class="details">edit</li>
+                <li class="details">delete</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!--main section end-->
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>
