@@ -102,7 +102,7 @@ function formData(arr) {
   arr.forEach(function (element) {
     let dataStore = document.querySelector(".data-store");
     let dataList = document.createElement("li");
-    dataList.className = "data";
+    dataList.className = "storage data";
     dataList.innerHTML = `<ul class="detail-list">
     <li class="details">${element.firstName}</li>
     <li class="details">${element.lastName}</li>
@@ -121,7 +121,7 @@ function formData(arr) {
     editBtn.addEventListener("click", function () {
       firstName.value = element.firstName;
       lastName.value = element.lastName;
-      address.value = element.address;
+      address.value = element.addr;
       if (male.checked === element.radio) {
         male.checked = true;
       } else {
