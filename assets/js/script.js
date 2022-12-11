@@ -11,6 +11,8 @@ let arr = [];
 let inputVal = document.querySelectorAll(".form input");
 let dataStore = document.querySelector(".data-store");
 let isValid;
+let isEditMode = false;
+let editIndex = -1;
 document.querySelector(".form").addEventListener("submit", function (e) {
   e.preventDefault();
   validate(firstName, regName, 3, 15);
@@ -18,18 +20,26 @@ document.querySelector(".form").addEventListener("submit", function (e) {
   radioValidate();
   validate(address, addressRegex, 4, 60);
   checkValidate();
-  if (isValid == true) {
-    alert("your form has been submitted");
-    let user = {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      radio: (male.checked ? male.value : female.value),
-      addr: address.value
-    };
-    arr.push(user);
-    formData(arr);
-    form.reset();
-    console.log(arr);
+  if (isValid) {
+    if(isEditMode) {
+      let row = document.getElementById(`${editIndex}`);
+     row.getElementsByClassName("user-first-name")[0].innerHTML  = firstName.value;
+     row.getElementsByClassName("user-last-name")[0].innerHTML  = firstName.value;
+     row.getElementsByClassName("user-gender")[0].innerHTML  = firstName.value;
+     row.getElementsByClassName("user-address")[0].innerHTML  = firstName.value;
+    } else {
+      alert("your form has been submitted");
+      let user = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        radio: (male.checked ? male.value : female.value),
+        addr: address.value
+      };
+      arr.push(user);
+      formData(user, arr.indexOf(user));
+      form.reset();
+      console.log(arr);
+    }
   }
 });
 firstName.addEventListener("blur", function (e) {
@@ -92,41 +102,41 @@ function checkValidate() {
   }
 }
 
-function formData(arr) {
-  let empty = document.querySelectorAll(".data");
-  if (empty) {
-    empty.forEach(function (emp) {
-      emp.parentElement.removeChild(emp);
-    });
-  }
-  arr.forEach(function (element) {
+function formData(user, position) {
+
     let dataStore = document.querySelector(".data-store");
     let dataList = document.createElement("li");
     dataList.className = "storage data";
+    dataList.id = `${position}`;
     dataList.innerHTML = `<ul class="detail-list">
-    <li class="details">${element.firstName}</li>
-    <li class="details">${element.lastName}</li>
-    <li class="details">${element.radio}</li>
-    <li class="details">${element.addr}</li>
-    <li class="details"><button class="edit-btn">edit</button></li>
-    <li class="details"><button class="del-btn">delete</button></li>
+    <li class="user-first-name">${user.firstName}</li>
+    <li class="user-last-name">${user.lastName}</li>
+    <li class="user-gender">${user.radio}</li>
+    <li class="user-address">${user.addr}</li>
+    <li class="details"><button class="edit-btn" data-position="${position}">edit</button></li>
+    <li class="details"><button class="del-btn" data-position="${position}">delete</button></li>
   </ul>`;
     dataStore.appendChild(dataList);
     const delBtn = dataList.querySelector(".del-btn");
     delBtn.addEventListener("click", function () {
+      let position =  this.dataset.position;
       dataList.remove();
+      arr.splice(position, position);
     });
 
     const editBtn = dataList.querySelector(".edit-btn");
     editBtn.addEventListener("click", function () {
-      firstName.value = element.firstName;
-      lastName.value = element.lastName;
-      address.value = element.addr;
-      if (male.checked === element.radio) {
+      let position =  this.dataset.position;
+
+      firstName.value = user.firstName;
+      lastName.value = user.lastName;
+      address.value = user.addr;
+      if (male.checked === user.radio) {
         male.checked = true;
       } else {
         female.checked = true;
       }
+      isEditMode = true;
+      editIndex = position;
     });
-  });
 }
