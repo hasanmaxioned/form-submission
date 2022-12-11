@@ -174,15 +174,27 @@ input.cancel-btn {
   cursor: pointer;
 }
 
-.error, .radio-error, .check-error {
+.error, 
+.radio-error, 
+.check-error {
   display: inline-block;
-  /* text-indent: -99999px; */
   visibility: hidden;
 }
 
-.error.active, .radio-error.active, .check-error.active {
+.error.active, 
+.radio-error.active, 
+.check-error.active {
   visibility: visible;
   color: #ff0d0d;
+}
+
+li.user-first-name, 
+li.user-last-name, 
+li.user-gender, 
+li.user-address {
+  padding: 10px 23px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
 button.del-btn {
