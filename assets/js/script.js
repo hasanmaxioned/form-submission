@@ -23,10 +23,11 @@ document.querySelector(".form").addEventListener("submit", function (e) {
   if (isValid) {
     if(isEditMode) {
       let row = document.getElementById(`${editIndex}`);
+      console.log(lastName.value);
      row.getElementsByClassName("user-first-name")[0].innerHTML  = firstName.value;
-     row.getElementsByClassName("user-last-name")[0].innerHTML  = firstName.value;
-     row.getElementsByClassName("user-gender")[0].innerHTML  = firstName.value;
-     row.getElementsByClassName("user-address")[0].innerHTML  = firstName.value;
+     row.getElementsByClassName("user-last-name")[0].innerHTML  = lastName.value;
+     row.getElementsByClassName("user-gender")[0].innerHTML  = radio;
+     row.getElementsByClassName("user-address")[0].innerHTML  = addr.value;
     } else {
       alert("your form has been submitted");
       let user = {
