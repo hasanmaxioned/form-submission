@@ -1,5 +1,5 @@
-let regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-let addressRegex = /^[a-zA-Z02-9]$/;
+let regName = /^[A-Za-z\s]*$/;
+let addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
 let firstName = document.querySelector(".first-name");
 let lastName = document.querySelector(".last-name");
 let male = document.querySelector(".male-gender");
@@ -17,11 +17,12 @@ document.querySelector(".form").addEventListener("submit", function (e) {
   if (isAllFieldAcceptable) {
     if(isEditMode) {
       let row = document.getElementById(`${editIndex}`);
-      console.log(lastName.value);
+      // console.log(lastName.value);
      row.getElementsByClassName("user-first-name")[0].innerHTML  = firstName.value;
      row.getElementsByClassName("user-last-name")[0].innerHTML  = lastName.value;
      row.getElementsByClassName("user-gender")[0].innerHTML  = (male.checked ? male.value : female.value);
      row.getElementsByClassName("user-address")[0].innerHTML  = address.value;
+     form.reset();
     } else {
       alert("your form has been submitted");
       let user = {
@@ -33,7 +34,7 @@ document.querySelector(".form").addEventListener("submit", function (e) {
       arr.push(user);
       formData(user, arr.indexOf(user));
       form.reset();
-      console.log(arr);
+      // console.log(arr);
     }
   }
 });
@@ -59,14 +60,15 @@ function validate(input, regex, min, max) {
     inputGroup.classList.add("active");
     errorMessage.innerText = "*It must be between " + min + " & " + max;
     return false;
-  } else if (regex.test(input.value)) {
+  } else if (!regex.test(input.value)) {
     errorMessage.classList.add("active");
     inputGroup.classList.add("active");
     errorMessage.innerText = "*please Enter your valid " + input.name;
-    return   false;
+    return false;
   } else {
     errorMessage.classList.remove("active");
     inputGroup.classList.remove("active");
+    
   }
   return true;
 }
