@@ -6,6 +6,7 @@ let male = document.querySelector(".male-gender");
 let female = document.querySelector(".female-gender");
 let address = document.querySelector(".address-field");
 let check = document.querySelector(".check-box-field");
+let cancelBtn = document.querySelector(".cancel-btn");
 let arr = [];
 let inputVal = document.querySelectorAll(".form input");
 let dataStore = document.querySelector(".data-store");
@@ -13,23 +14,32 @@ let isEditMode = false;
 let editIndex = -1;
 document.querySelector(".form").addEventListener("submit", function (e) {
   e.preventDefault();
-  let isAllFieldAcceptable =  validate(firstName, regName, 3, 15) && validate(lastName, regName, 3, 15) && radioValidate() && checkValidate() && validate(address, addressRegex, 4, 60);
+  let isAllFieldAcceptable =
+    validate(firstName, regName, 3, 15) &&
+    validate(lastName, regName, 3, 15) &&
+    radioValidate() &&
+    checkValidate() &&
+    validate(address, addressRegex, 4, 60);
   if (isAllFieldAcceptable) {
-    if(isEditMode) {
+    if (isEditMode) {
       let row = document.getElementById(`${editIndex}`);
       // console.log(lastName.value);
-     row.getElementsByClassName("user-first-name")[0].innerHTML  = firstName.value;
-     row.getElementsByClassName("user-last-name")[0].innerHTML  = lastName.value;
-     row.getElementsByClassName("user-gender")[0].innerHTML  = (male.checked ? male.value : female.value);
-     row.getElementsByClassName("user-address")[0].innerHTML  = address.value;
-     form.reset();
+      row.getElementsByClassName("user-first-name")[0].innerHTML =
+        firstName.value;
+      row.getElementsByClassName("user-last-name")[0].innerHTML =
+        lastName.value;
+      row.getElementsByClassName("user-gender")[0].innerHTML = male.checked
+        ? male.value
+        : female.value;
+      row.getElementsByClassName("user-address")[0].innerHTML = address.value;
+      form.reset();
     } else {
       alert("your form has been submitted");
       let user = {
         firstName: firstName.value,
         lastName: lastName.value,
-        radio: (male.checked ? male.value : female.value),
-        addr: address.value
+        radio: male.checked ? male.value : female.value,
+        addr: address.value,
       };
       arr.push(user);
       formData(user, arr.indexOf(user));
@@ -40,13 +50,22 @@ document.querySelector(".form").addEventListener("submit", function (e) {
 });
 firstName.addEventListener("blur", function (e) {
   validate(firstName, regName, 3, 15);
+  // removeClasses();
 });
 lastName.addEventListener("blur", function (e) {
   validate(lastName, regName, 3, 15);
+  // removeClasses();
 });
 address.addEventListener("blur", function (e) {
   validate(address, addressRegex, 4, 60);
+  // removeClasses();
 });
+function removeClasses() {
+  cancelBtn.addEventListener("click", function () {
+    window.location.reload();  
+  });
+}
+removeClasses();
 function validate(input, regex, min, max) {
   const inputGroup = input.parentElement;
   errorMessage = inputGroup.querySelector(".error");
@@ -68,7 +87,6 @@ function validate(input, regex, min, max) {
   } else {
     errorMessage.classList.remove("active");
     inputGroup.classList.remove("active");
-    
   }
   return true;
 }
@@ -88,18 +106,18 @@ function checkValidate() {
   if (check.checked != true) {
     checkError.classList.add("active");
     checkError.innerText = "*please select our terms and condition ";
-    return  false;
+    return false;
   } else {
     checkError.classList.remove("active");
     return true;
   }
 }
 function formData(user, position) {
-    let dataStore = document.querySelector(".data-store");
-    let dataList = document.createElement("li");
-    dataList.className = "storage data";
-    dataList.id = `${position}`;
-    dataList.innerHTML = `<ul class="detail-list">
+  let dataStore = document.querySelector(".data-store");
+  let dataList = document.createElement("li");
+  dataList.className = "storage data";
+  dataList.id = `${position}`;
+  dataList.innerHTML = `<ul class="detail-list">
     <li class="user-first-name">${user.firstName}</li>
     <li class="user-last-name">${user.lastName}</li>
     <li class="user-gender">${user.radio}</li>
@@ -107,25 +125,25 @@ function formData(user, position) {
     <li class="details"><button class="edit-btn" data-position="${position}">edit</button></li>
     <li class="details"><button class="del-btn" data-position="${position}">delete</button></li>
   </ul>`;
-    dataStore.appendChild(dataList);
-    const delBtn = dataList.querySelector(".del-btn");
-    delBtn.addEventListener("click", function () {
-      let position =  this.dataset.position;
-      dataList.remove();
-      arr.splice(position, position);
-    });
-    const editBtn = dataList.querySelector(".edit-btn");
-    editBtn.addEventListener("click", function () {
-      let position =  this.dataset.position;
-      firstName.value = user.firstName;
-      lastName.value = user.lastName;
-      address.value = user.addr;
-      if (male.value === user.radio) {
-        male.checked = true;
-      } else {
-        female.checked = true;
-      }
-      isEditMode = true;
-      editIndex = position;
-    });
+  dataStore.appendChild(dataList);
+  const delBtn = dataList.querySelector(".del-btn");
+  delBtn.addEventListener("click", function () {
+    let position = this.dataset.position;
+    dataList.remove();
+    arr.splice(position, position);
+  });
+  const editBtn = dataList.querySelector(".edit-btn");
+  editBtn.addEventListener("click", function () {
+    let position = this.dataset.position;
+    firstName.value = user.firstName;
+    lastName.value = user.lastName;
+    address.value = user.addr;
+    if (male.value === user.radio) {
+      male.checked = true;
+    } else {
+      female.checked = true;
+    }
+    isEditMode = true;
+    editIndex = position;
+  });
 }
